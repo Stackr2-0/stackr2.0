@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import TestPage from "./components/TestPage/TestPage";
 import Home from "./components/Home/Home";
 import ResultsPage from "./components/ResultsPage/ResultsPage";
+import TrendingGraph from "./components/TrendingGraph/TrendingGraph";
 import "./index.css";
 
 function App() {
@@ -162,6 +163,8 @@ function App() {
         path="/results"
         element={<ResultsPage stackChoices={stackChoices} />}
       />
+
+      <Route path="/trending-graph" element={<TrendingGraph />} />
     </Routes>
   );
 }

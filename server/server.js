@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { Card } = require("./models/Card");
 const cards = require("./data");
 const dbController = require("./controllers/dbController");
+const googleTrends = require("google-trends-api");
 
 const app = express();
 const PORT = 4000;
@@ -31,6 +32,16 @@ app.use(express.urlencoded({ extended: true }));
 // GRABBING DATA TO RENDER ON FRONTEND
 app.get("/api", dbController.getTech, (req, res) => {
   res.status(200).json(res.locals.cards);
+});
+
+app.get("/google-trending", async (req, res) => {
+  const startTime = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+  const interest = await googleTrends.interestOverTime({
+    keyword: "express js",
+    startTime,
+  });
+  // const parsedInterest = await interest.json();
+  res.status(200).send(JSON.parse(interest));
 });
 
 // ERROR HANDLERS
