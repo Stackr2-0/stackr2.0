@@ -42,6 +42,7 @@ function Graph({
     //Join all package packageNames with a ','
     let packageNameString = packageNames.join(",");
     let downloadData;
+    let trending, sortedPackage;
 
     /** GET npm download data over a year range for all packages
      * Then update npm stats state
@@ -51,8 +52,10 @@ function Graph({
         `/api/${trendingType}?packageName=${packageNameString}&stackLevel=${stackLevel}`
       );
       downloadData = await res.json();
+      trending = downloadData.trending;
+      sortedPackage = downloadData.sortedPackage;
       //Update npm stats state
-      setNpmStats(downloadData);
+      setNpmStats(trending);
     } catch (err) {
       console.log({ err });
     }
@@ -64,20 +67,20 @@ function Graph({
     for (let i = 0; i < packageNames.length; i++) {
       ds.push({
         label: packageNames[i],
-        data: downloadData[packageNames[i]].map(({ val }) => val),
+        data: trending[packageNames[i]].map(({ val }) => val),
         borderColor: lineColors[i],
         backgroundColor: lineColors[i],
       });
     }
     //Set dataset within data to ds
     const data = {
-      labels: downloadData[packageNames[0]].map(({ day }) => day), // X-axis columns
+      labels: trending[packageNames[0]].map(({ day }) => day), // X-axis columns
       datasets: ds,
     };
     //Set graph data state
     setGraphData(data);
     // Ordered array of cards based on popularity
-    updateState(downloadData.sortedPackages);
+    updateState(sortedPackage);
   };
 
   /** When click toggle, update trending type to either npm-download or google-trending

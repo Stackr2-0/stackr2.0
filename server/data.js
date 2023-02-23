@@ -340,7 +340,7 @@ const cards = [
 
   {
     name: "Material UI",
-    packageName: "@mui/material",
+    packageName: "material-ui",
     type: "Styling",
     description:
       "Material UI is a popular React component library that provides pre-built UI components based on Google's Material Design guidelines",

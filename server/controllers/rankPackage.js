@@ -28,7 +28,6 @@ const rankPackage = async (trendData, stackLevel) => {
   rankPackage = rankPackage
     .sort((a, b) => b[1] - a[1])
     .map(([package, _]) => package);
-
   //Fetch Data based on provided stackLevel
   switch (stackLevel) {
     case "Bundler":
