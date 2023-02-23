@@ -17,6 +17,8 @@ function TestPage({
   data,
   completed,
   setCompleted,
+  stackLevel,
+  updateState,
 }) {
   // dummy data for rendering cards
   // saving technology choice to state
@@ -24,7 +26,8 @@ function TestPage({
   // get state for options
   // const [options, setOptions] = useState(testOptions);
 
-  console.log(data);
+  // console.log(data);
+
 
   //Initialize npmStats state
   const [npmStats, setNpmStats] = useState({});
@@ -53,7 +56,7 @@ function TestPage({
           stackr
         </h1>
       </div>
-      <h2 className={styles.currentTestTitle}>Choose Your {data[0].type}</h2>
+      <h2 className={styles.currentTestTitle}>Choose Your {stackLevel}</h2>
       <div className={styles.cardAndStackHolder}>
         {/* <button className={styles.left} onClick={leftScroll()}>
             Left
@@ -107,6 +110,8 @@ function TestPage({
         trendingType={trendingType}
         setTrendingType={setTrendingType}
         packageNames={data.map(({ packageName }) => packageName)}
+        stackLevel={stackLevel}
+        updateState={updateState}
       />
     </div>
   );
