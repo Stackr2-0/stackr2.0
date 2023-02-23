@@ -17,6 +17,7 @@ const cardSchema = new Schema({
 });
 const bundlerSchema = new Schema({
   name: String,
+  type: String,
   description: String,
   gitHubStars: Number,
   packageName: String,
@@ -26,6 +27,7 @@ const bundlerSchema = new Schema({
 });
 const databaseSchema = new Schema({
   name: String,
+  type: String,
   description: String,
   gitHubStars: Number,
   packageName: String,
@@ -35,6 +37,7 @@ const databaseSchema = new Schema({
 });
 const serverSchema = new Schema({
   name: String,
+  type: String,
   description: String,
   gitHubStars: Number,
   packageName: String,
@@ -44,6 +47,7 @@ const serverSchema = new Schema({
 });
 const frameworkSchema = new Schema({
   name: String,
+  type: String,
   description: String,
   gitHubStars: Number,
   packageName: String,
@@ -53,6 +57,7 @@ const frameworkSchema = new Schema({
 });
 const stylingSchema = new Schema({
   name: String,
+  type: String,
   description: String,
   gitHubStars: Number,
   packageName: String,
@@ -64,7 +69,7 @@ const stylingSchema = new Schema({
 //Trend schema expire after 30s of the entry was made
 const trendSchema = new Schema({
   type: String,
-  createAt: {type: Date, expires: 30, default: Date.now },
+  createAt: { type: Date, expires: 30, default: Date.now },
   google: [],
   npm: [],
 });
