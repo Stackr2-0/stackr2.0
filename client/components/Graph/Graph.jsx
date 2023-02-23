@@ -18,6 +18,8 @@ function Graph({
   npmStats,
   trendingType,
   setTrendingType,
+  stackLevel,
+  updateState
 }) {
   const lineColors = [
     "blue",
@@ -46,7 +48,7 @@ function Graph({
      */
     try {
       const res = await fetch(
-        `/api/${trendingType}?packageName=${packageNameString}`
+        `/api/${trendingType}?packageName=${packageNameString}&stackLevel=${stackLevel}`
       );
       downloadData = await res.json();
       //Update npm stats state
@@ -74,6 +76,8 @@ function Graph({
     };
     //Set graph data state
     setGraphData(data);
+    // Ordered array of cards based on popularity
+    updateState(downloadData.sortedPackages);
   };
 
   /** When click toggle, update trending type to either npm-download or google-trending
