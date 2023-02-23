@@ -119,6 +119,7 @@ function App() {
             handleClick={handleClick}
             data={databaseData}
             nextPage="/server"
+            prevPage="/bundler"
           />
         }
       />
@@ -131,6 +132,7 @@ function App() {
             handleClick={handleClick}
             data={serverData}
             nextPage="/frameworks"
+            prevPage="/database"
           />
         }
       />
@@ -143,6 +145,7 @@ function App() {
             handleClick={handleClick}
             data={frameworksData}
             nextPage="/styling"
+            prevPage="/server"
           />
         }
       />
@@ -155,13 +158,14 @@ function App() {
             handleClick={handleClick}
             data={stylingData}
             nextPage="/results"
+            prevPage="/frameworks"
           />
         }
       />
 
       <Route
         path="/results"
-        element={<ResultsPage stackChoices={stackChoices} />}
+        element={<ResultsPage stackChoices={stackChoices} prevPage="/" />}
       />
 
       <Route path="/trending-graph" element={<TrendingGraph />} />

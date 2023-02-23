@@ -6,12 +6,14 @@ import Card from "../Card/Card";
 import StackChoiceBar from "../StackChoiceBar/StackChoiceBar";
 import StackChoice from "../StackChoice/StackChoice";
 import TopBar from "../TopBar/TopBar";
+import Graph from "../Graph/Graph";
 
 function TestPage({
   handleClick,
   stackChoices,
   setStackChoices,
   nextPage,
+  prevPage,
   data,
   completed,
   setCompleted,
@@ -23,6 +25,10 @@ function TestPage({
   // const [options, setOptions] = useState(testOptions);
 
   console.log(data);
+
+  //Initialize npmStats state
+  const [npmStats, setNpmStats] = useState({});
+  const [trendingType, setTrendingType] = useState("npm-download");
 
   // function leftScroll() {
   //   const left = document.querySelector(".cardsHolder");
@@ -73,9 +79,35 @@ function TestPage({
         <StackChoiceBar stackChoices={stackChoices} />
         {/* </div> */}
       </div>
-      <Link to={nextPage} className={styles.nextButton}>
-        Continue
-      </Link>
+      <div className={styles.backNextBtnContainer}>
+        {prevPage && (
+          <Link
+            to={prevPage}
+            onClick={() => {
+              setNpmStats({}), setTrendingType("npm-download");
+            }}
+            className={styles.backButton}
+          >
+            Back
+          </Link>
+        )}
+        <Link
+          to={nextPage}
+          onClick={() => {
+            setNpmStats({}), setTrendingType("npm-download");
+          }}
+          className={styles.nextButton}
+        >
+          Continue
+        </Link>
+      </div>
+      <Graph
+        setNpmStats={setNpmStats}
+        npmStats={npmStats}
+        trendingType={trendingType}
+        setTrendingType={setTrendingType}
+        packageNames={data.map(({ packageName }) => packageName)}
+      />
     </div>
   );
 }
