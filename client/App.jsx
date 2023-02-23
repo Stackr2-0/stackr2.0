@@ -107,6 +107,8 @@ function App() {
             handleClick={handleClick}
             data={bundlerData}
             nextPage="/database"
+            stackLevel="Bundler"
+            updateState={setBundlerData}
           />
         }
       />
@@ -120,6 +122,8 @@ function App() {
             data={databaseData}
             nextPage="/server"
             prevPage="/bundler"
+            stackLevel="Database"
+            updateState={setDatabaseData}
           />
         }
       />
@@ -133,6 +137,8 @@ function App() {
             data={serverData}
             nextPage="/frameworks"
             prevPage="/database"
+            stackLevel="Server"
+            updateState={setServerData}
           />
         }
       />
@@ -146,6 +152,8 @@ function App() {
             data={frameworksData}
             nextPage="/styling"
             prevPage="/server"
+            stackLevel="Frameworks"
+            updateState={setFrameworksData}
           />
         }
       />
@@ -159,6 +167,8 @@ function App() {
             data={stylingData}
             nextPage="/results"
             prevPage="/frameworks"
+            stackLevel="Styling"
+            updateState={setStylingData}
           />
         }
       />
